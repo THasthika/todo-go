@@ -1,0 +1,16 @@
+version: "3"
+services:
+  mongo:
+    image: mongo:4.2
+    restart: always
+    volumes:
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - dbdata:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: todouser
+      MONGO_INITDB_ROOT_PASSWORD: todopwd
+      MONGO_INITDB_DATABASE: todo
+    ports:
+      - 27017:27017
+volumes:
+  dbdata:
