@@ -52,6 +52,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("failed to load environment variables:", err)
 	}
+
 	//
 	log.Println("Dialing mongo", cfg.Mongo.Host)
 	connStr := fmt.Sprintf("mongodb://%s:%s@%s:%d/%s", cfg.Mongo.User, cfg.Mongo.Pass, cfg.Mongo.Host, cfg.Mongo.Port, cfg.Mongo.Name)
@@ -60,6 +61,7 @@ func main() {
 		log.Fatalln("failed to connect to mongo:", err)
 	}
 	defer db.Close()
+
 	s := &Server{
 		db: db,
 	}

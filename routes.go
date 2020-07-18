@@ -13,15 +13,6 @@ type todo struct {
 	Done  bool          `json:"done"`
 }
 
-func homeGet(w http.ResponseWriter, r *http.Request) {
-	x := struct {
-		Ok string `json:"ok"`
-	}{
-		Ok: "OK!",
-	}
-	respond(w, r, 200, x)
-}
-
 func (s *Server) handleTodosGet(w http.ResponseWriter, r *http.Request) {
 	session := s.db.Copy()
 	defer session.Close()
